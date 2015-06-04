@@ -9,6 +9,32 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
+  <script>
+    var device = "https://api.particle.io/v1/devices/48ff6b065067555032091787/";
+    var token = "0101e75a4acb0c906e1d8f4956f9cd032163db43";
+    
+    function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+  
+  function getVariable(variable)
+  {
+   var response = httpGet(device + variable + "?access_token=" + token);
+   obj = JSON.parse(response);
+   return obj.result;
+  }
+  
+  glassCount = getVariable("glass");
+  document.getElementById('glassCount').innerHTML = glassCount;
+  </script>
+  
+  
+  
+  
   <body>
     <section class="page-header">
       <h1 class="project-name">Smart Bin</h1>
@@ -23,6 +49,14 @@
 <a id="smart-bin" class="anchor" href="#smart-bin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smart Bin</h1>
 
 <p>Smart Bin: The intelligent recycling bin, Powered by Particle.</p>
+<h2>Glass Bottles: <div id="glassCount"></div></h2>
+
+
+
+
+
+
+
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/nrobinson2000/smart-bin">Smart-bin</a> is maintained by <a href="https://github.com/nrobinson2000">nrobinson2000</a>.</span>
