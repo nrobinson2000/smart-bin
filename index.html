@@ -46,7 +46,10 @@
 <a id="smart-bin" class="anchor" href="#smart-bin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smart Bin</h1>
 
 <p>Smart Bin: The intelligent recycling bin, Powered by Particle.</p>
-<h2 id="glassCount"></h2></h2>
+<h2 id="glassCount">Glass Bottles: </h2>
+<button type="button"
+onclick="document.getElementById("glassCount").innerHTML = "Glass Bottles: " + getVariable("glass")">
+Load</button>
 
 
 
@@ -54,7 +57,7 @@
 <script>
   
   
-  document.getElementById("glassCount").innerHTML = "Glass Bottles: " + getVariable("glass");
+
 </script>
 
 
