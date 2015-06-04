@@ -37,7 +37,6 @@ void setup()
 
   Spark.function("derp", derp);
   pinMode(derpPin, OUTPUT);
-  Spark.subscribe("derrp", derpy);
 }
 
 int derp(String data)
@@ -60,22 +59,6 @@ int derp(String data)
 
 }
 
-void derpy(const char *event, const char *data)
-{
-  if (strcmp(data, "on") == 0)
-  {
-    digitalWrite(derpPin, HIGH);
-  }
-  else if (strcmp(data, "off") == 0)
-  {
-    digitalWrite(derpPin, LOW);
-  }
-
-  else
-  {
-  }
-
-}
 
 void loop()
 {
