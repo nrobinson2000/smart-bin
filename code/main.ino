@@ -64,12 +64,14 @@ void loop()
 {
   if (digitalRead(GPIN) == HIGH)
     {
+      delay(50);
       if (digitalRead(GPIN) == LOW)
       {  glassCount++;}
     }
 
     if (digitalRead(PPIN) == HIGH)
       {
+        delay(50);
         if (digitalRead(PPIN) == LOW)
         {  plasticCount++;  }
 
@@ -77,6 +79,7 @@ void loop()
 
       if (digitalRead(CAPIN) == HIGH)
         {
+          delay(50);
           if (digitalRead(CAPIN) == LOW)
           {  canCount++;}
 
@@ -84,6 +87,7 @@ void loop()
 
         if (digitalRead(CPIN) == HIGH)
           {
+            delay(50);
             if (digitalRead(CPIN) == LOW)
             {cupCount++;}
 
@@ -91,6 +95,7 @@ void loop()
 
           if (digitalRead(MPIN) == HIGH)
             {
+              delay(50);
               if (digitalRead(MPIN) == LOW)
               {milkCount++;}
 
