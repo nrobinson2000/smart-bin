@@ -10,6 +10,7 @@
 #define CAPIN D2
 #define CPIN D3
 #define MPIN D4  // </Drink container pins>
+#define MODEPIN D5
 
 int glassCount = 0;   // <Drink count variables>
 int plasticCount = 0;
@@ -18,6 +19,8 @@ int cupCount = 0;
 int milkCount = 0;    // </Drink count variables>
 
 int derpPin = D6;
+
+bool additionMode;
 
 void setup()
 {
@@ -28,6 +31,7 @@ void setup()
   pinMode(CAPIN, INPUT);
   pinMode(CPIN, INPUT);
   pinMode(MPIN, INPUT);
+  pinMode(MODEPIN, INPUT);
 
   Spark.variable("glass", &glassCount, INT);
   Spark.variable("plastic", &plasticCount, INT);
@@ -62,45 +66,65 @@ int derp(String data)
 
 void loop()
 {
+  if (digitalRead(MODEPIN) == LOW)
+  {
+    additionMode = true;
+  }
+
+  if (digitalRead(MODEPIN == HIGH))
+  {
+    additionMode = false;
+  }
+
   if (digitalRead(GPIN) == HIGH)
     {
       delay(50);
-      if (digitalRead(GPIN) == LOW)
-      {  glassCount++;}
+      if (additionMode == true)
+      {
+        glassCount++;
+      }
+      if (additionMode = false)
+      { glassCount--;}
     }
 
     if (digitalRead(PPIN) == HIGH)
       {
         delay(50);
-        if (digitalRead(PPIN) == LOW)
-        {  plasticCount++;  }
+        if (additionMode == true)
+        {  plasticCount++; }
+        if (additionMode = false)
+        { plasticCount--;}
 
       }
 
       if (digitalRead(CAPIN) == HIGH)
         {
           delay(50);
-          if (digitalRead(CAPIN) == LOW)
+          if (additionMode == true)
           {  canCount++;}
+          else
+          { canCount--;}
 
         }
 
         if (digitalRead(CPIN) == HIGH)
           {
             delay(50);
-            if (digitalRead(CPIN) == LOW)
-            {cupCount++;}
+            if (additionMode == true)
+            {  cupCount++;}
+            else
+            { cupCount--;}
 
           }
 
           if (digitalRead(MPIN) == HIGH)
             {
               delay(50);
-              if (digitalRead(MPIN) == LOW)
-              {milkCount++;}
+              if (additionMode == true)
+              {  milkCount++;}
+              else
+              { milkCount--;}
 
             }
-
-
 
 }
