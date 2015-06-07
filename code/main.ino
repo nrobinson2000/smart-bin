@@ -10,17 +10,13 @@
 #define CAPIN D2
 #define CPIN D3
 #define MPIN D4  // </Drink container pins>
-#define MODEPIN D5
+#define MODEPIN D6
 
 int glassCount = 0;   // <Drink count variables>
 int plasticCount = 0;
 int canCount = 0;
 int cupCount = 0;
 int milkCount = 0;    // </Drink count variables>
-
-int derpPin = D6;
-
-bool additionMode;
 
 void setup()
 {
@@ -39,92 +35,114 @@ void setup()
   Spark.variable("cup", &cupCount, INT);
   Spark.variable("milk", &milkCount, INT);
 
-  Spark.function("derp", derp);
-  pinMode(derpPin, OUTPUT);
 }
-
-int derp(String data)
-{
-  if (data.compareTo("on") == 0)
-  {
-    digitalWrite(derpPin, HIGH);
-    return 1;
-  }
-  else if (data.compareTo("off") == 0)
-  {
-    digitalWrite(derpPin, LOW);
-    return 1;
-  }
-
-  else
-  {
-    return -1;
-  }
-
-}
-
 
 void loop()
 {
-  if (digitalRead(MODEPIN) == LOW)
-  {
-    additionMode = true;
-  }
-
-  if (digitalRead(MODEPIN == HIGH))
-  {
-    additionMode = false;
-  }
 
   if (digitalRead(GPIN) == HIGH)
     {
-      delay(50);
-      if (additionMode == true)
+      delay(150);
+      if (digitalRead(MODEPIN) == HIGH)
       {
         glassCount++;
       }
-      if (additionMode = false)
-      { glassCount--;}
+      else
+      {
+        if (glassCount > 0)
+        {
+        glassCount--;
+        }
+        else
+        {
+          return;
+        }
+      }
+    Serial.println("Glass pushed!   "+String(glassCount));
     }
 
     if (digitalRead(PPIN) == HIGH)
       {
-        delay(50);
-        if (additionMode == true)
-        {  plasticCount++; }
-        if (additionMode = false)
-        { plasticCount--;}
-
+        delay(150);
+        if (digitalRead(MODEPIN) == HIGH)
+        {
+          plasticCount++;
+        }
+        else
+        {
+          if (plasticCount > 0)
+          {
+          plasticCount--;
+          }
+          else
+          {
+            return;
+          }
+        }
+        Serial.println("Plastic pushed!   "+String(plasticCount));
       }
 
       if (digitalRead(CAPIN) == HIGH)
         {
-          delay(50);
-          if (additionMode == true)
-          {  canCount++;}
+          delay(150);
+          if (digitalRead(MODEPIN) == HIGH)
+          {
+            canCount++;
+          }
           else
-          { canCount--;}
-
+          {
+            if (canCount > 0)
+            {
+            canCount--;
+            }
+            else
+            {
+              return;
+            }
+          }
+          Serial.println("Can pushed!   "+String(canCount));
         }
 
         if (digitalRead(CPIN) == HIGH)
           {
-            delay(50);
-            if (additionMode == true)
-            {  cupCount++;}
+            delay(150);
+            if (digitalRead(MODEPIN) == HIGH)
+            {
+              cupCount++;
+            }
             else
-            { cupCount--;}
-
+            {
+              if (cupCount > 0)
+              {
+              cupCount--;
+              }
+              else
+              {
+                return;
+              }
+            }
+            Serial.println("Cup pushed!  "+String(cupCount));
           }
 
           if (digitalRead(MPIN) == HIGH)
             {
-              delay(50);
-              if (additionMode == true)
-              {  milkCount++;}
+              delay(150);
+              if (digitalRead(MODEPIN) == HIGH)
+              {
+                milkCount++;
+              }
               else
-              { milkCount--;}
-
+              {
+                if (milkCount > 0)
+                {
+                milkCount--;
+                }
+                else
+                {
+                  return;
+                }
+              }
+              Serial.println("Milk pushed!   "+String(milkCount));
             }
 
 }
