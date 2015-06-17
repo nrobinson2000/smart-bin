@@ -7,3 +7,4 @@ Smart Bin: The intelligent recycling bin, Powered by Particle.
 * **main.fzz** - Fritzing document.
 * **label.pages** - Front label for the bin.
 * **qr code.pages** - QR code label for the bin.
+* **code/main.ino** - Firmware for the Particle core.
